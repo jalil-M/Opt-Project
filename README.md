@@ -25,7 +25,7 @@ The folder `litterature` contains scientific papers that inspired our project.
 * [Class Project](https://github.com/epfml/OptML_course/blob/master/labs/mini-project/miniproject_description.pdf) : Description of the project.
 
 ### Authors
-* Members: Cadillon Alexandre, Hoggett Emma
+* Members: Cadillon Alexandre, Hoggett Emma, Moussa Abdeljalil
 
 ### Project Status
 The project was submitted on the 29 May 2020, as part of the [Optimization for Machine Learning](https://github.com/epfml/OptML_course) course.
