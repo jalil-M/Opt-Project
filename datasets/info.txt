@@ -1,0 +1,15 @@
+Datasets: 
+
+- credit card fraud detection : https://www.kaggle.com/mlg-ulb/creditcardfraud
+
+- outlier detection : http://odds.cs.stonybrook.edu/
+
+Research Adam:
+
+- cats VS dogs : https://shaoanlu.wordpress.com/2017/05/29/sgd-all-which-one-is-the-best-optimizer-dogs-vs-cats-toy-experiment/
+
+- adam VS SGD : https://arxiv.org/pdf/1712.07628.pdf
+
+- Radam VS Adam : https://www.pyimagesearch.com/2019/10/07/is-rectified-adam-actually-better-than-adam/
+
+ 
