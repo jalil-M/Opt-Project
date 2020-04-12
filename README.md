@@ -12,6 +12,7 @@ This version was designed for python 3.6.6 or higher. To run the model's calcula
 The following librairies are used:
 * [numpy](http://www.numpy.org/) 1.14.3, can be obtained through [anaconda](https://www.anaconda.com/download/)
 * [pandas](https://pandas.pydata.org/), also available through anaconda
+* [pytorch](https://pytorch.org/get-started/locally/)
 
 
 #### Code
