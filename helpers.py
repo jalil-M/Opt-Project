@@ -6,6 +6,9 @@ from sklearn.metrics import roc_curve
 from sklearn.metrics import roc_auc_score
 from matplotlib import pyplot
 
+import tensorflow as tf
+from tensorflow import keras
+
 def build_spectrum (data,do_spectrum = False ,spect = 0.5, random_state = 1):
     
     """ Function that build a specific spectrum of the class y = 1 from the bank-additional-full.csv.
@@ -50,12 +53,13 @@ def build_spectrum (data,do_spectrum = False ,spect = 0.5, random_state = 1):
         
     return pd.concat([no_onehot_data, yes_onehot_data], ignore_index=True)
 
-def plot_ROC (y, pred_y):
+def build_plot_ROC (y, pred_y):
     
     """ Function that plot the roc of the finals predictions 
     
     Inputs: - y : vector of the actual data set classification
             - pred_y: vector of predictions of y """
+    
     auc = roc_auc_score(y, pred_y)
     print('ROC AUC=%.3f' % (auc))
     
@@ -71,3 +75,38 @@ def plot_ROC (y, pred_y):
     pyplot.legend()
     # show the plot
     pyplot.show()
+    
+def build_plot_loss_accuracy(x, y, model,epochs=10, batch_size=128, 
+                             validation_split=0.2, shuffle=True):
+    x_keras, y_keras = build_keras (x,y)
+    
+    history = model.fit(np.array(x_keras), np.array(y_keras), 
+                        epochs=epochs, batch_size=batch_size,
+                        validation_split=validation_split, shuffle=shuffle)
+    # summarize history for accuracy
+    plt.plot(history.history['accuracy'])
+    plt.plot(history.history['val_accuracy'])
+    plt.title('model accuracy')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
+
+    # summarize history for loss
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
+
+def build_keras (x,y):
+    x_keras = np.array(x)
+    y_keras = np.array(y)
+    y_keras = y_keras.reshape(y_keras.shape[0], 1)
+    return x_keras, y_keras
+    
+    
+    
+    
