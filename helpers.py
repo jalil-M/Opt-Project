@@ -4,7 +4,7 @@ from sklearn import preprocessing
 
 from sklearn.metrics import roc_curve
 from sklearn.metrics import roc_auc_score
-from matplotlib import pyplot
+import matplotlib.pyplot as plt
 
 import tensorflow as tf
 from tensorflow import keras
@@ -67,14 +67,14 @@ def build_plot_ROC (y, pred_y):
     fpr, tpr, thresholds = roc_curve(y, pred_y)
     
     # plot the roc curve for the model
-    pyplot.plot(fpr, tpr, marker='--')
+    plt.plot(fpr, tpr, marker='--')
     # axis labels
-    pyplot.xlabel('False Positive Rate')
-    pyplot.ylabel('True Positive Rate')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
     # show the legend
-    pyplot.legend()
+    plt.legend()
     # show the plot
-    pyplot.show()
+    plt.show()
     
 def build_plot_loss_accuracy(x, y, model,epochs=10, batch_size=128, 
                              validation_split=0.2, shuffle=True):
