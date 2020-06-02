@@ -8,6 +8,12 @@ import matplotlib.pyplot as plt
 
 import tensorflow as tf
 from tensorflow import keras
+from keras import backend as K
+from keras.models import Sequential
+from keras.layers import Dense
+
+from IPython.display import clear_output
+
 
 def build_spectrum (data,do_spectrum = False ,spect = 0.5, random_state = 1):
     
@@ -50,6 +56,7 @@ def build_spectrum (data,do_spectrum = False ,spect = 0.5, random_state = 1):
         spect_yes = yes_onehot_data.size/final_size_set
 
     print("Fraction of No :", spect_no, "Fraction of Yes :", spect_yes, sep='\n')
+    clear_output(wait=True)
         
     return pd.concat([no_onehot_data, yes_onehot_data], ignore_index=True)
 
@@ -102,11 +109,36 @@ def build_plot_loss_accuracy(x, y, model,epochs=10, batch_size=128,
     plt.show()
 
 def build_keras (x,y):
+    """Adapt the """
     x_keras = np.array(x)
     y_keras = np.array(y)
     y_keras = y_keras.reshape(y_keras.shape[0], 1)
     return x_keras, y_keras
-    
+
+def build_model():
+    """Build the neural network"""
+    model = Sequential()
+    model.add(Dense(10, input_dim=19, activation='relu'))
+    model.add(Dense(1, activation='sigmoid'))
+    return model
+
+def recall_m(y_true, y_pred):
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+    recall = true_positives / (possible_positives + K.epsilon())
+    return recall
+
+def precision_m(y_true, y_pred):
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+    precision = true_positives / (predicted_positives + K.epsilon())
+    return precision
+
+def f1_m(y_true, y_pred):
+    precision = precision_m(y_true, y_pred)
+    recall = recall_m(y_true, y_pred)
+    return 2*((precision*recall)/(precision+recall+K.epsilon()))
+
     
     
     
