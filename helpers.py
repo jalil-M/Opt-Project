@@ -115,10 +115,10 @@ def build_keras (x,y):
     y_keras = y_keras.reshape(y_keras.shape[0], 1)
     return x_keras, y_keras
 
-def build_model():
+def build_model(activation):
     """Build the neural network"""
     model = Sequential()
-    model.add(Dense(10, input_dim=19, activation='relu'))
+    model.add(Dense(10, input_dim=19, activation=activation))
     model.add(Dense(1, activation='sigmoid'))
     return model
 
