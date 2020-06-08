@@ -1,6 +1,6 @@
 # EPFL Optimization for Machine Learning 2020
-## Inbalanced data sets effect on the learning process
-### The impact of data's variance with methods s.a. Radam, Adam and SGD
+# Inbalanced data sets effect on the learning process
+## The impact of data's variance with methods s.a. Radam, Adam and SGD
 
 ### Description
 In August 2019, a variation of the Adam optimiser is discovered through a new publication named "On the Variance of the Adaptive Learning Rate and Beyond" by Liu, Jiang and He. This optimiser, called RAdam, use an adaptive momentum to quantify the variance that is misleading during the beginning of the learning. As imbalanced data set present severely skewed class distribution, we suspect that RAdam will perform poorly compare to Adam due to this property. The aim is to validate or invalidate this assumption.
@@ -24,7 +24,7 @@ The following librairies are used:
 To launch the code `run.py` use the following code files:
 * `helpers.py`: Deal with the creation of the spectrum and the building of the neural network
 
-The `data` folder is also needed to store full data set.
+The `datasets` folder is also needed to store full data set.
 
 ### Additional content
 
@@ -39,4 +39,4 @@ The folder `litterature` contains scientific papers that inspired our project.
 * Members: Cadillon Alexandre, Hoggett Emma, Moussa Abdeljalil
 
 ### Project Status
-The project was submitted on the 12 June 2020, as part of the [Optimization for Machine Learning](https://github.com/epfml/OptML_course) course.pypi.org/project/keras-radam/
+The project was submitted on the 12 June 2020, as part of the [Optimization for Machine Learning](https://github.com/epfml/OptML_course).
