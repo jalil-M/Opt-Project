@@ -1,5 +1,5 @@
 # EPFL Optimization for Machine Learning 2020
-# Inbalanced data sets effect on the learning process
+## Inbalanced data sets effect on the learning process :
 ## The impact of data's variance with methods s.a. Radam, Adam and SGD
 
 ### Description
@@ -18,17 +18,19 @@ The following librairies are used:
 * [scikit-learn](https://scikit-learn.org/stable/): `pip install -U scikit-learn`
 * [keras](https://keras.io/): `pip install Keras`
 * [keras_radam](https://pypi.org/project/keras-radam/):`pip install keras-rectified-adam`
+* [matplotlib](https://matplotlib.org/3.1.1/users/installing.html): `python -m pip install -U matplotlib`
+* [seaborn](https://seaborn.pydata.org/installing.html):`pip install seaborn`
 
 
 #### Code
 To launch the code `run.py` use the following code files:
 * `helpers.py`: Deal with the creation of the spectrum and the building of the neural network
 
-The `datasets` folder is also needed to store full data set.
+The `datasets` folder is also needed to store full data set. In this folder, the data sheet `bank-additional-full.csv` is used for the experiment.
 
 ### Additional content
 
-The folder `litterature` contains scientific papers that inspired our project.
+The folder `litterature` contains scientific papers that inspired our project. The folder `figures` present all the figures plotted for the report. The notebook `DataAnalysis.ipynb` has all the analysis on the raw data distribution.
 
 ### Documentation
 * [Class Project](https://github.com/epfml/OptML_course/blob/master/labs/mini-project/miniproject_description.pdf) : Description of the project.
