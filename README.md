@@ -17,6 +17,7 @@ The following librairies are used:
 * [pandas](https://pandas.pydata.org/), also available through anaconda
 * [scikit-learn](https://scikit-learn.org/stable/): `pip install -U scikit-learn`
 * [keras](https://keras.io/): `pip install Keras`
+* [tensor flow](https://www.tensorflow.org/install/): `pip install tensorflow`
 * [keras_radam](https://pypi.org/project/keras-radam/):`pip install keras-rectified-adam`
 * [matplotlib](https://matplotlib.org/3.1.1/users/installing.html): `python -m pip install -U matplotlib`
 * [seaborn](https://seaborn.pydata.org/installing.html):`pip install seaborn`
