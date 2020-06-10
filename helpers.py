@@ -108,6 +108,30 @@ def build_plot_loss_accuracy(x, y, model,epochs=10, batch_size=128,
     plt.legend(['train', 'test'], loc='upper left')
     plt.show()
 
+
+def build_plot_benchmark(spects, sgd_metric, adam_metric, radam_metric, metric_name, activation):
+    plt.style.use('seaborn-whitegrid')
+    plt.plot(spects, sgd_metric, label='SGD')
+    plt.plot(spects, adam_metric, label='Adam')
+    plt.plot(spects, radam_metric, label='RAdam')
+    plt.xlabel('Balance of the data set[-]')
+    plt.ylabel('{}[-]'.format(metric_name))
+    plt.title('{} against spectrum balance with {}'.format(metric_name, activation))
+    plt.legend(loc='upper right')
+    plt.savefig('figures/{}-spect-{}.png'.format(metric_name, activation))
+
+
+def build_validation_loss_plot(adam, radam, sgd):
+    plt.style.use('seaborn-whitegrid')
+    plt.plot(adam, label='Adam')
+    plt.plot(radam, label='RAdam')
+    plt.plot(sgd, label='SGD')
+    plt.xlabel('Epochs[-]')
+    plt.ylabel('Loss[-]')
+    plt.title('Validation loss against epochs')
+    plt.legend(loc='lower right', frameon = True)
+    plt.savefig('figures/loss-epochs.png')
+
 def build_keras (x,y):
     """Adapt the """
     x_keras = np.array(x)
