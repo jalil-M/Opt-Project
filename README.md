@@ -1,9 +1,8 @@
 # EPFL Optimization for Machine Learning 2020
-## Inbalanced data sets effect on the learning process :
-## The impact of data's variance with methods s.a. Radam, Adam and SGD
+## Inbalanced data sets effect on the learning process
 
 ### Description
-In August 2019, a variation of the Adam optimiser is discovered through a new publication named "On the Variance of the Adaptive Learning Rate and Beyond" by Liu, Jiang and He. This optimiser, called RAdam, use an adaptive momentum to quantify the variance that is misleading during the beginning of the learning. As imbalanced data set present severely skewed class distribution, we suspect that RAdam will perform poorly compare to Adam due to this property. The aim is to validate or invalidate this assumption.
+In 2016, in the 
 
 
 ### Getting Started
@@ -18,7 +17,6 @@ The following librairies are used:
 * [scikit-learn](https://scikit-learn.org/stable/): `pip install -U scikit-learn`
 * [keras](https://keras.io/): `pip install Keras`
 * [tensor flow](https://www.tensorflow.org/install/): `pip install tensorflow`
-* [keras_radam](https://pypi.org/project/keras-radam/):`pip install keras-rectified-adam`
 * [matplotlib](https://matplotlib.org/3.1.1/users/installing.html): `python -m pip install -U matplotlib`
 * [seaborn](https://seaborn.pydata.org/installing.html):`pip install seaborn`
 
@@ -35,7 +33,7 @@ The folder `litterature` contains scientific papers that inspired our project. T
 
 ### Documentation
 * [Class Project](https://github.com/epfml/OptML_course/blob/master/labs/mini-project/miniproject_description.pdf) : Description of the project.
-* [On the Variance of the Adaptive Learning Rate and Beyond](https://arxiv.org/pdf/1908.03265.pdf) : Paper of the RAdam optimiser.
+* [Incorporating Nesterov Momentum Into Adam](https://openreview.net/pdf?id=OM0jvwB8jIp57ZJjtNEZ) : 
 * [Bank Marketing Data Set](https://archive.ics.uci.edu/ml/datasets/Bank+Marketing) : Dataset of the experiement with its features.
 
 ### Authors
