@@ -1,8 +1,11 @@
 # EPFL Optimization for Machine Learning 2020
-## Inbalanced data sets effect on the learning process
+## Optimizer's impact on learning process for imbalanced data sets
 
 ### Description
-In 2016, in the 
+Optimizers are key parameters for an efficient training on deep neural network. Current adaptive-learning-rate optimizers have significantly improved the optimization time of other widely spread fixed-learning-rate optimizers. Yet, for non-convex optimization problems, they all risk converging towards non-optimal solutions. For adaptive-learning-rate methods, an undesirably large variance in the early stages of training, due to the limited amount of training samples, might drive the model away from optimal solutions. 
+Imbalanced data set, in the other hand, present a severly skewed class distribution that may lead to large variation of the gradient during the learning.
+This way, we will study the impact of imbalanced data sets on
+different optimizers' approach, as we suspect undesired behavior for well known optimizer's such as SGD, RMSprop and Adam.
 
 
 ### Getting Started
@@ -23,9 +26,10 @@ The following librairies are used:
 
 #### Code
 To launch the code `run.py` use the following code files:
-* `helpers.py`: Deal with the creation of the spectrum and the building of the neural network
+* `helpers.py`: Deal with the creation of the spectrum, building of the neural network and the plots
+* `benchmarking.py` : Functions used for the benchmarking. It is composed of computation of the loss against the number of epochs and the recall, accuracy, precision and F1-score against the spectrum.
 
-The `datasets` folder is also needed to store full data set. In this folder, the data sheet `bank-additional-full.csv` is used for the experiment.
+The `datasets` folder is also needed to store full data set. For the experiment, the data set `bank-additional-full.csv` is used. In this folder, the data sheet `bank-additional-full.csv` is used for the experiment.
 
 ### Additional content
 
@@ -33,7 +37,7 @@ The folder `litterature` contains scientific papers that inspired our project. T
 
 ### Documentation
 * [Class Project](https://github.com/epfml/OptML_course/blob/master/labs/mini-project/miniproject_description.pdf) : Description of the project.
-* [Incorporating Nesterov Momentum Into Adam](https://openreview.net/pdf?id=OM0jvwB8jIp57ZJjtNEZ) : NAdam implementation and results.
+* [An overview of gradient descent optimization algorithms](https://arxiv.org/pdf/1609.04747.pdf) : Description of optimizers used in this project
 * [Bank Marketing Data Set](https://archive.ics.uci.edu/ml/datasets/Bank+Marketing) : Dataset of the experiement with its features.
 
 ### Authors

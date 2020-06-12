@@ -60,82 +60,33 @@ def build_spectrum (data,do_spectrum = False ,spect = 0.5, random_state = 1):
         
     return pd.concat([no_onehot_data, yes_onehot_data], ignore_index=True)
 
-def build_plot_ROC (y, pred_y):
-    
-    """ Function that plot the roc of the finals predictions 
-    
-    Inputs: - y : vector of the actual data set classification
-            - pred_y: vector of predictions of y """
-    
-    auc = roc_auc_score(y, pred_y)
-    print('ROC AUC=%.3f' % (auc))
-    
-    # calculate roc curves
-    fpr, tpr, thresholds = roc_curve(y, pred_y)
-    
-    # plot the roc curve for the model
-    plt.plot(fpr, tpr, marker='--')
-    # axis labels
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    # show the legend
-    plt.legend()
-    # show the plot
-    plt.show()
-    
-def build_plot_loss_accuracy(x, y, model,epochs=10, batch_size=128, 
-                             validation_split=0.2, shuffle=True):
-    x_keras, y_keras = build_keras (x,y)
-    
-    history = model.fit(np.array(x_keras), np.array(y_keras), 
-                        epochs=epochs, batch_size=batch_size,
-                        validation_split=validation_split, shuffle=shuffle)
-    # summarize history for accuracy
-    plt.plot(history.history['accuracy'])
-    plt.plot(history.history['val_accuracy'])
-    plt.title('model accuracy')
-    plt.ylabel('accuracy')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
-    plt.show()
-
-    # summarize history for loss
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
-    plt.show()
 
 
-def build_plot_benchmark(spects, sgd_metric, adam_metric, rms_metric, metric_name, activation):
-    plt.close('all')
+def build_plot_benchmark(spects, sgd_metric, adam_metric, radam_metric, metric_name, activation):
     plt.style.use('seaborn-whitegrid')
     plt.plot(spects, sgd_metric, label='SGD')
     plt.plot(spects, adam_metric, label='Adam')
-    plt.plot(spects, rms_metric, label='RMS-prop')
+    plt.plot(spects, radam_metric, label='RAdam')
     plt.xlabel('Balance of the data set[-]')
     plt.ylabel('{}[-]'.format(metric_name))
     plt.title('{} against spectrum balance with {}'.format(metric_name, activation))
     plt.legend(loc='upper right')
-    plt.savefig('final/{}-spect-{}.png'.format(metric_name, activation))
+    plt.savefig('figures/{}-spect-{}.png'.format(metric_name, activation))
 
 
-def build_validation_plots(adam, rms, sgd, metric):
-    plt.close('all')
+def build_validation_loss_plot(adam, radam, sgd,spect):
     plt.style.use('seaborn-whitegrid')
     plt.plot(adam, label='Adam')
-    plt.plot(rms, label='RMS-prop')
+    plt.plot(radam, label='RAdam')
     plt.plot(sgd, label='SGD')
     plt.xlabel('Epochs[-]')
     plt.ylabel('Loss[-]')
-    plt.title('Validation {} against epochs'.format(metric))
+    plt.title('Validation loss against epochs for {}% spectrum'.format(spect))
     plt.legend(loc='lower right', frameon = True)
-    plt.savefig('final/{}-epochs.png'.format(metric))
+    plt.savefig('figures/loss-epochs-{}.png'.format(spect))
 
 def build_keras (x,y):
-    """Adapt the """
+    """Adapt the size of inputs """
     x_keras = np.array(x)
     y_keras = np.array(y)
     y_keras = y_keras.reshape(y_keras.shape[0], 1)
@@ -149,6 +100,7 @@ def build_model(activation):
     return model
 
 def recall_m(y_true, y_pred):
+    """Compute the recall with the true value"""
     true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
     possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
     recall = true_positives / (possible_positives + K.epsilon())

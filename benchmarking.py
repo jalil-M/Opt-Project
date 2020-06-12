@@ -69,7 +69,8 @@ def run_benchmark(data, activation = 'relu', N_spec = 25):
             cvscores_recall= []
             for train, test in kfold.split(X, y):
                 model = build_model(activation)
-                model.compile(loss='binary_crossentropy', optimizer=opt, metrics=[f1_m,'accuracy',recall_m,precision_m])
+                model.compile(loss='binary_crossentropy', optimizer=opt, metrics=
+                              [f1_m,'accuracy',recall_m,precision_m])
                 model.fit(X[train], y[train], epochs=20, batch_size=128, verbose=0)
                 # evaluate the model
                 scores = model.evaluate(X[test], y[test], verbose=0)
@@ -151,7 +152,7 @@ def run_training_benchmarking_f1(data, epochs = 50):
 
 ################################
 
-def run_training_benchmarking_loss(data, epochs = 50):
+def run_training_benchmarking_loss(data, spect = 0.88,epochs = 50):
     list_optimzers = ['rms_prop','adam', 'sgd']
     
     adam_val_loss = []
@@ -159,7 +160,7 @@ def run_training_benchmarking_loss(data, epochs = 50):
     rms_val_loss = []
     
     
-    X = build_spectrum (data)
+    X = build_spectrum (data,do_spectrum=True, spect=spect)
     train, test= train_test_split(X, test_size=0.2, stratify = X['y'], random_state=1)
     x_train, y_train = build_keras (train.drop(columns=['y']),train['y'])
     x_test, y_test = build_keras (test.drop(columns=['y']),test['y'])
@@ -183,7 +184,6 @@ def run_training_benchmarking_loss(data, epochs = 50):
 
         if l == 'adam':
             adam_val_loss = history.history['val_loss']
-
         elif l == 'sgd':
             sgd_val_loss = history.history['val_loss']
         else:
