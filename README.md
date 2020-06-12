@@ -27,13 +27,13 @@ The following librairies are used:
 #### Code
 To launch the code `run.py` use the following code files:
 * `helpers.py`: Deal with the creation of the spectrum, building of the neural network and the plots
-* `benchmarking.py` : Functions used for the benchmarking. It is composed of computation of the loss against the number of epochs and the recall, accuracy, precision and F1-score against the spectrum.
+* `benchmarking.py`: Functions used for the benchmarking. It is composed of computation of the loss against the number of epochs and the recall, accuracy, precision and F1-score against the spectrum.
 
-The `datasets` folder is also needed to store full data set. For the experiment, the data set `bank-additional-full.csv` is used. In this folder, the data sheet `bank-additional-full.csv` is used for the experiment.
+The `datasets` folder is also needed to store the full data set. For the experiment, the data set `bank-additional-full.csv` is used. In this folder, the datasheet `bank-additional-full.csv` is used for the experiment.
 
 ### Additional content
 
-The folder `litterature` contains scientific papers that inspired our project. The folder `figures` present all the figures plotted for the report. The notebook `DataAnalysis.ipynb` has all the analysis on the raw data distribution.
+The folder `literature` contains scientific papers that inspired our project. The folder `figures` present all the figures plotted for the report. The notebook `DataAnalysis.ipynb` has all the analysis on the raw data distribution.
 
 ### Documentation
 * [Class Project](https://github.com/epfml/OptML_course/blob/master/labs/mini-project/miniproject_description.pdf) : Description of the project.
