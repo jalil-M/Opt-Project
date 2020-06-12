@@ -1,5 +1,5 @@
 # EPFL Optimization for Machine Learning 2020
-## Optimizer's impact on learning process for imbalanced data sets
+## Optimizer's impact on the learning process for imbalanced data sets
 
 ### Description
 Optimizers are key parameters for efficient training on deep neural network. Current adaptive-learning-rate optimizers have significantly improved the optimization time of other widely spread fixed-learning-rate optimizers. For adaptive-learning-rate methods, an undesirably large variance in the early stages of training, due to the limited amount of training samples, might drive the model away from optimal solutions. 
@@ -41,7 +41,7 @@ The folder `literature` contains scientific papers that inspired our project. Th
 * [Neural Networks for Machine Learning](https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf): RMSprop
 * [Adam: a method for stochastic optimization](https://arxiv.org/pdf/1412.6980.pdf): Adam
 * [Stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent): SGD
-* [Bank Marketing Data Set](https://archive.ics.uci.edu/ml/datasets/Bank+Marketing) : Dataset of the experiement with its features.
+* [Bank Marketing Data Set](https://archive.ics.uci.edu/ml/datasets/Bank+Marketing) : Dataset of the experiment with its features.
 
 ### Authors
 * Members: Cadillon Alexandre, Hoggett Emma, Moussa Abdeljalil
