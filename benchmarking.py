@@ -23,7 +23,7 @@ from helpers import *
 
 ##### BENCHMARKING METHODS #####
 
-def run_benchmark(data, activation = 'relu', N_spec = 25):
+def run_benchmark(data, activation = 'selu', N_spec = 25):
     list_optimzers = ['rms_prop','adam', 'sgd']
     spects = np.linspace(0.5,0.99,N_spec)
     
@@ -136,7 +136,7 @@ def run_training_benchmarking_f1(data, epochs = 50):
         kfold = StratifiedKFold(n_splits=5, shuffle=True, random_state=1)
                 
         for train, test in kfold.split(X, y):
-            model = build_model('relu')
+            model = build_model('selu')
             model.compile(loss='binary_crossentropy', optimizer=opt, metrics=[f1_m])
             history = model.fit(X[train], y[train], validation_data=(X[test],y[test]) ,epochs=epochs, batch_size=128, verbose=0)
 
@@ -177,7 +177,7 @@ def run_training_benchmarking_loss(data, spect = 0.88,epochs = 50):
             print('[INFO] Using SGD')
             opt = SGD()
             
-        model = build_model('relu')
+        model = build_model('selu')
         model.compile(loss='binary_crossentropy', optimizer=opt)
         history = model.fit(x_train, y_train, epochs=epochs, batch_size=128,
                 validation_data=(x_test, y_test), verbose = 0)
