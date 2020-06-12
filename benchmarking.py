@@ -177,7 +177,7 @@ def run_training_benchmarking_loss(data, spect = 0.88,epochs = 50):
             print('[INFO] Using SGD')
             opt = SGD()
             
-        model = build_model(activation='relu')
+        model = build_model('relu')
         model.compile(loss='binary_crossentropy', optimizer=opt)
         history = model.fit(x_train, y_train, epochs=epochs, batch_size=128,
                 validation_data=(x_test, y_test), verbose = 0)
