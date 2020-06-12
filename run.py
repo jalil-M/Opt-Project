@@ -61,7 +61,7 @@ sgd_val_loss, adam_val_loss, rms_val_loss = run_training_benchmarking_loss(data,
 build_validation_loss_plot(adam_val_loss, rms_val_loss, sgd_val_loss, '50');
 
 sgd_val_loss, adam_val_loss, rms_val_loss = run_training_benchmarking_loss(data,spect=0.95)
-build_validation_loss_plot(adam_val_loss, rms_val_loss, sgd_val_loss, '50');
+build_validation_loss_plot(adam_val_loss, rms_val_loss, sgd_val_loss, '95');
 
 
 
