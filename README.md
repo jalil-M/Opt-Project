@@ -1,5 +1,5 @@
 # EPFL Optimization for Machine Learning 2020
-## Optimizer's impact on the learning process for imbalanced data sets
+## Imbalanced data sets' impact on optimizers' learning process
 
 ### Description
 Optimizers are key parameters for efficient training on deep neural network. Current adaptive-learning-rate optimizers have significantly improved the optimization time of other widely spread fixed-learning-rate optimizers. For adaptive-learning-rate methods, an undesirably large variance in the early stages of training, due to the limited amount of training samples, might drive the model away from optimal solutions. 
