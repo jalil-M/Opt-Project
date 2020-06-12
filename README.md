@@ -1,9 +1,9 @@
 # EPFL Optimization for Machine Learning 2020
-## Imbalanced data sets' impact on optimizers' learning process
+## The impact of imbalanced datasets on optimizers' learning processes
 
 ### Description
 Optimizers are key parameters for efficient training on deep neural network. Current adaptive-learning-rate optimizers have significantly improved the optimization time of other widely spread fixed-learning-rate optimizers. For adaptive-learning-rate methods, an undesirably large variance in the early stages of training, due to the limited amount of training samples, might drive the model away from optimal solutions. 
-Imbalanced data set, on the other hand, presents a severely skewed class distribution that may lead to a large variation of the gradient during the learning.
+Imbalanced datasets, on the other hand, presents a severely skewed class distribution that may lead to a large variation of the gradient during the learning.
 This way, we will study the impact of imbalanced data sets on
 different optimizers' approach, as we suspect undesired behaviour over imbalanced datasets for well-known optimizer's such as SGD, RMSprop and Adam.
 
