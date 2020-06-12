@@ -29,8 +29,10 @@ data = pd.read_csv('datasets/bank-additional-full.csv', sep=';')
 
 ##### RESULTS BENCHMARKING #####
 
-spects_selu, sgd_f1_selu, sgd_accuracy_selu, sgd_recall_selu, sgd_precision_selu, adam_f1_selu, adam_accuracy_selu,adam_recall_selu, adam_precision_selu, rms_prop_f1_selu, rms_prop_accuracy_selu, rms_prop_recall_selu, rms_prop_precision_selu = run_benchmark(data)
+# Selu Activation Function
+spects_selu, sgd_f1_selu, sgd_accuracy_selu, sgd_recall_selu, sgd_precision_selu, adam_f1_selu, adam_accuracy_selu, adam_recall_selu, adam_precision_selu, rms_prop_f1_selu, rms_prop_accuracy_selu, rms_prop_recall_selu, rms_prop_precision_selu = run_benchmark(data)
 
+# Tanh Activation Function
 spects_tanh, sgd_f1_tanh, sgd_accuracy_tanh, sgd_recall_tanh, sgd_precision_tanh, adam_f1_tanh, adam_accuracy_tanh, adam_recall_tanh, adam_precision_tanh, rms_prop_f1_tanh, rms_prop_accuracy_tanh, rms_prop_recall_tanh, rms_prop_precision_tanh = run_benchmark(data, activation='tanh')
 
 ##### PLOTS BENCHMARKING #####

@@ -17,8 +17,8 @@ from IPython.display import clear_output
 
 def build_spectrum (data,do_spectrum = False ,spect = 0.5, random_state = 1):
     
-    """ Function that build a specific spectrum of the class y = 1 from the bank-additional-full.csv.
-    It sets a label encoder for columns that aren't numeric and remove the column that are highly correlated, such as duration.
+    """ Function that builds a specific spectrum of the class y = 1 from the full dataset.
+    It sets a label encoder for columns that are not numeric and remove the columns that are highly correlated, such as duration.
     It returns one dataframe.
     
         Inputs: - data : Dataframe of raw data
@@ -30,40 +30,48 @@ def build_spectrum (data,do_spectrum = False ,spect = 0.5, random_state = 1):
     
     assert((spect>=0.5)&(spect<=1)), 'Pourcentage of the spectrum is not in the good range'
     
-    onehot_data = data.apply(preprocessing.LabelEncoder().fit_transform)
-    onehot_data = onehot_data.drop(columns=['duration'])
+    encode_data = data.apply(preprocessing.LabelEncoder().fit_transform)
+    encode_data = encode_data.drop(columns=['duration'])
 
-    yes_onehot_data = onehot_data.loc[onehot_data['y']== 1]
-    no_onehot_data = onehot_data.loc[onehot_data['y']== 0]
+    yes_encode_data = encode_data.loc[encode_data['y']== 1]
+    no_encode_data = encode_data.loc[encode_data['y']== 0]
 
-    final_size_set = 2*yes_onehot_data.size
+    final_size_set = 2*yes_encode_data.size
 
-    size_set = yes_onehot_data.size + no_onehot_data.size
-    spect_no = no_onehot_data.size/size_set
-    spect_yes = yes_onehot_data.size/size_set
+    size_set = yes_encode_data.size + no_encode_data.size
+    spect_no = no_encode_data.size/size_set
+    spect_yes = yes_encode_data.size/size_set
 
     if do_spectrum:
 
         size_no = round((spect)*final_size_set)
         size_yes = final_size_set-size_no
-        frac = size_no/no_onehot_data.size
-        no_onehot_data = no_onehot_data.sample(frac = frac, random_state=random_state)
-        frac = size_yes/yes_onehot_data.size
-        yes_onehot_data = yes_onehot_data.sample(frac = frac, random_state=random_state)
+        frac = size_no/no_encode_data.size
+        no_encode_data = no_encode_data.sample(frac = frac, random_state=random_state)
+        frac = size_yes/yes_encode_data.size
+        yes_encode_data = yes_encode_data.sample(frac = frac, random_state=random_state)
 
 
-        spect_no = no_onehot_data.size/final_size_set
-        spect_yes = yes_onehot_data.size/final_size_set
+        spect_no = no_encode_data.size/final_size_set
+        spect_yes = yes_encode_data.size/final_size_set
 
     print("Fraction of No :", spect_no, "Fraction of Yes :", spect_yes, sep='\n')
     clear_output(wait=True)
         
-    return pd.concat([no_onehot_data, yes_onehot_data], ignore_index=True)
-
+    return pd.concat([no_encode_data, yes_encode_data], ignore_index=True)
 
 
 def build_plot_benchmark(spects, sgd_metric, adam_metric, rms_prop_metric, metric_name, activation):
-    """Build the plot with the specified metrics and the spectrum. The plot is saved in the folder figures."""
+    
+    """ Function that plots the benchmarking plots of the finals predictions based on several metrics. The plots are saved in figures folder.
+    
+    Inputs: - spects : vector of spectrum steps (provided with a number of steps)
+            - sgd_metric : vector of the history of the sgd metric
+            - adam_metric : vector of the history of the adam metric
+            - rms_metric : vector of the history of the rms-prop metric
+            - metric_name : String for the name of the metric plotted
+            - activation : String for the model's last layer activation function """
+    
     plt.style.use('seaborn-whitegrid')
     plt.plot(spects, sgd_metric, label='SGD')
     plt.plot(spects, adam_metric, label='Adam')
@@ -72,11 +80,19 @@ def build_plot_benchmark(spects, sgd_metric, adam_metric, rms_prop_metric, metri
     plt.ylabel('{}[-]'.format(metric_name))
     plt.title('{} against spectrum balance with {}'.format(metric_name, activation))
     plt.legend(loc='upper right')
-    plt.savefig('figures/{}-spect-{}.png'.format(metric_name, activation))
+    plt.savefig('final/{}-spect-{}.png'.format(metric_name, activation))
     plt.clf()
 
 
 def build_validation_loss_plot(adam, rms_prop, sgd,spect):
+    
+    """ Function that plots the validation sets history on a specific metric. The plots are saved in the figures folder. 
+    
+    Inputs: - adam : vector of the history of the adam metric
+            - rms : vector of the history of the rms-prop metric
+            - sgd : vector of the history of the sgd metric
+            - metric : String for the name of the metric """
+    
     plt.style.use('seaborn-whitegrid')
     plt.plot(adam, label='Adam')
     plt.plot(rms_prop, label='RMSprop')
@@ -85,11 +101,11 @@ def build_validation_loss_plot(adam, rms_prop, sgd,spect):
     plt.ylabel('Loss[-]')
     plt.title('Validation loss against epochs for {}% spectrum'.format(spect))
     plt.legend(loc='lower right', frameon = True)
-    plt.savefig('figures/loss-epochs-{}.png'.format(spect))
+    plt.savefig('final/loss-epochs-{}.png'.format(spect))
     plt.clf()
 
 def build_keras (x,y):
-    """Adapt the size and type of inputs for the neural network"""
+    """ Convert the input data vectors into numpy arrays for the keras model """
     x_keras = np.array(x)
     y_keras = np.array(y)
     y_keras = y_keras.reshape(y_keras.shape[0], 1)

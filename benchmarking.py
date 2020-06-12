@@ -24,6 +24,16 @@ from helpers import *
 ##### BENCHMARKING METHODS #####
 
 def run_benchmark(data, activation = 'selu', N_spec = 25):
+    
+    """ Function that runs the complete benchmarking method on all our optimizers and metrics (accuracy, precision, recall and f1-score) 
+    
+    Inputs: - data : complete dataset as a dataframe
+            - activation : name of the activation function
+            - N_spec : number of spectrum steps
+            
+    Outputs : - spects : vector of spectrum values
+              - sgd, adam and rms-prop history metrics vectors """
+    
     list_optimzers = ['rms_prop','adam', 'sgd']
     spects = np.linspace(0.5,0.99,N_spec)
     
@@ -44,9 +54,9 @@ def run_benchmark(data, activation = 'selu', N_spec = 25):
     rms_prop_precision = []
     
     for spect in spects:
-        one_hot_enc = build_spectrum (data,do_spectrum = True ,spect = spect)
-        X = one_hot_enc.drop(columns=['y'])
-        y = one_hot_enc['y']
+        encoded = build_spectrum (data,do_spectrum = True ,spect = spect)
+        X = encoded.drop(columns=['y'])
+        y = encoded['y']
         X, y= build_keras (X,y)
         for l in list_optimzers:
             if l=='adam':
@@ -107,18 +117,23 @@ def run_benchmark(data, activation = 'selu', N_spec = 25):
 ################################
 
 def run_training_benchmarking_f1(data, epochs = 50):
-    list_optimzers = ['rms_prop','adam', 'sgd']
     
+    """ Function that runs the benchmarking method with the validation history after training on each optimizer regarding the f1-score. 
+    
+    Inputs: - data : complete dataset as a dataframe
+            - epochs : number of epochs
+            
+    Outputs : - validation history vectors on each optimizer """
+    
+    list_optimzers = ['rms_prop','adam', 'sgd']
     
     adam_val_f1 = []
     sgd_val_f1 = []
     rms_val_f1 = []
     
-    
-    
-    one_hot_enc = build_spectrum (data)
-    X = one_hot_enc.drop(columns=['y'])
-    y = one_hot_enc['y']
+    encoded = build_spectrum (data)
+    X = encoded.drop(columns=['y'])
+    y = encoded['y']
     X, y= build_keras (X,y)
 
     for l in list_optimzers:
@@ -153,6 +168,15 @@ def run_training_benchmarking_f1(data, epochs = 50):
 ################################
 
 def run_training_benchmarking_loss(data, spect = 0.88,epochs = 50):
+    
+    """ Function that runs the benchmarking method with the validation history after training on each optimizer regarding the accuracy. 
+    
+    Inputs: - data : complete dataset as a dataframe
+            - epochs : number of epochs
+            - spect : specific spectrum value
+            
+    Outputs : - validation history vectors on each optimizer """
+    
     list_optimzers = ['rms_prop','adam', 'sgd']
     
     adam_val_loss = []
