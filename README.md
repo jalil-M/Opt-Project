@@ -36,7 +36,9 @@ The `datasets` folder is also needed to store the full data set. For the experim
 
 ### Additional content
 
-The folder `literature` contains scientific papers that inspired our project. The folder `figures` present all the figures plotted for the report. The notebook `DataAnalysis.ipynb` has all the analysis on the raw data distribution. The notebook `project.ipynb` contains the simulations of `run.py` and the RAdam implementation with a loss plot against epochs, that is unsuccessful on this type of problems. This notebook requires the code `helpers.py` and the data set `bank-additional-full.csv`.
+The folder `literature` contains scientific papers that inspired our project. The folder `figures` present all the figures plotted for the report. The notebook `DataAnalysis.ipynb` has all the analysis on the raw data distribution. 
+The notebook `project.ipynb` contains the simulations of `run.py` and the RAdam implementation with a loss plot against epochs, that is unsuccessful on this type of problems. This notebook requires the code `helpers.py` and the data set `bank-additional-full.csv`.
+The notebooks were used but not implemented.
 
 ### Documentation
 * [Class Project](https://github.com/epfml/OptML_course/blob/master/labs/mini-project/miniproject_description.pdf) : Description of the project.
@@ -44,6 +46,9 @@ The folder `literature` contains scientific papers that inspired our project. Th
 * [Neural Networks for Machine Learning](https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf): RMSprop
 * [Adam: a method for stochastic optimization](https://arxiv.org/pdf/1412.6980.pdf): Adam
 * [Stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent): SGD
+* [Incorporating Nesterov Momentum into Adam](http://cs229.stanford.edu/proj2015/054_report.pdf)
+* [On the variance of the adaptive learning rate and beyond](https://arxiv.org/pdf/1908.03265v1.pdf): Rectified Adam
+* [Keras](https://keras.io/): Keras library
 * [Bank Marketing Data Set](https://archive.ics.uci.edu/ml/datasets/Bank+Marketing) : Dataset of the experiment with its features.
 
 ### Authors
