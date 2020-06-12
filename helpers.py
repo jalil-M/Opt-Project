@@ -80,7 +80,7 @@ def build_plot_benchmark(spects, sgd_metric, adam_metric, rms_prop_metric, metri
     plt.ylabel('{}[-]'.format(metric_name))
     plt.title('{} against spectrum balance with {}'.format(metric_name, activation))
     plt.legend(loc='upper right')
-    plt.savefig('final/{}-spect-{}.png'.format(metric_name, activation))
+    plt.savefig('figures/{}-spect-{}.png'.format(metric_name, activation))
     plt.clf()
 
 
@@ -101,7 +101,7 @@ def build_validation_loss_plot(adam, rms_prop, sgd,spect):
     plt.ylabel('Loss[-]')
     plt.title('Validation loss against epochs for {}% spectrum'.format(spect))
     plt.legend(loc='lower right', frameon = True)
-    plt.savefig('final/loss-epochs-{}.png'.format(spect))
+    plt.savefig('figures/loss-epochs-{}.png'.format(spect))
     plt.clf()
 
 def build_keras (x,y):
