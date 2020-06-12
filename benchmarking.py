@@ -16,9 +16,6 @@ from sklearn.model_selection import train_test_split
 from keras.optimizers import SGD, Adam, RMSprop
 from keras.utils.vis_utils import plot_model
 
-os.environ['TF_KERAS'] = '1'
-os.environ['KERAS_BACKEND'] =  'theano'
-
 from helpers import *
 
 ##### BENCHMARKING METHODS #####

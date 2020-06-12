@@ -23,6 +23,9 @@ The following librairies are used:
 * [matplotlib](https://matplotlib.org/3.1.1/users/installing.html): `python -m pip install -U matplotlib`
 * [seaborn](https://seaborn.pydata.org/installing.html):`pip install seaborn`
 
+For running RAdam optimizer in the notebook `project.ipynb`:
+* [RAdam](https://pypi.org/project/keras-radam/): `pip install keras-rectified-adam`
+
 
 #### Code
 To launch the code `run.py` use the following code files:
@@ -33,7 +36,7 @@ The `datasets` folder is also needed to store the full data set. For the experim
 
 ### Additional content
 
-The folder `literature` contains scientific papers that inspired our project. The folder `figures` present all the figures plotted for the report. The notebook `DataAnalysis.ipynb` has all the analysis on the raw data distribution.
+The folder `literature` contains scientific papers that inspired our project. The folder `figures` present all the figures plotted for the report. The notebook `DataAnalysis.ipynb` has all the analysis on the raw data distribution. The notebook `project.ipynb` contains the simulations of `run.py` and the RAdam implementation with a loss plot against epochs, that is unsuccessful on this type of problems. This notebook requires the code `helpers.py` and the data set `bank-additional-full.csv`.
 
 ### Documentation
 * [Class Project](https://github.com/epfml/OptML_course/blob/master/labs/mini-project/miniproject_description.pdf) : Description of the project.

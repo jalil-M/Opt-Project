@@ -13,12 +13,8 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 
-from keras.optimizers import SGD, Adam, Nadam
+from keras.optimizers import SGD, Adam, RMSprop
 from keras.utils.vis_utils import plot_model
-from keras_radam import RAdam
-
-os.environ['TF_KERAS'] = '1'
-os.environ['KERAS_BACKEND'] =  'theano'
 
 from helpers import *
 from benchmarking import *
