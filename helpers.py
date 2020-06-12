@@ -62,57 +62,75 @@ def build_spectrum (data,do_spectrum = False ,spect = 0.5, random_state = 1):
 
 
 
-def build_plot_benchmark(spects, sgd_metric, adam_metric, radam_metric, metric_name, activation):
+def build_plot_benchmark(spects, sgd_metric, adam_metric, rms_prop_metric, metric_name, activation):
+    """Build the plot with the specified metrics and the spectrum. The plot is saved in the folder figures."""
     plt.style.use('seaborn-whitegrid')
     plt.plot(spects, sgd_metric, label='SGD')
     plt.plot(spects, adam_metric, label='Adam')
-    plt.plot(spects, radam_metric, label='RAdam')
+    plt.plot(spects, rms_prop_metric, label='RMSprop')
     plt.xlabel('Balance of the data set[-]')
     plt.ylabel('{}[-]'.format(metric_name))
     plt.title('{} against spectrum balance with {}'.format(metric_name, activation))
     plt.legend(loc='upper right')
     plt.savefig('figures/{}-spect-{}.png'.format(metric_name, activation))
+    plt.clf()
 
 
-def build_validation_loss_plot(adam, radam, sgd,spect):
+def build_validation_loss_plot(adam, rms_prop, sgd,spect):
     plt.style.use('seaborn-whitegrid')
     plt.plot(adam, label='Adam')
-    plt.plot(radam, label='RAdam')
+    plt.plot(rms_prop, label='RMSprop')
     plt.plot(sgd, label='SGD')
     plt.xlabel('Epochs[-]')
     plt.ylabel('Loss[-]')
     plt.title('Validation loss against epochs for {}% spectrum'.format(spect))
     plt.legend(loc='lower right', frameon = True)
     plt.savefig('figures/loss-epochs-{}.png'.format(spect))
+    plt.clf()
 
 def build_keras (x,y):
-    """Adapt the size of inputs """
+    """Adapt the size and type of inputs for the neural network"""
     x_keras = np.array(x)
     y_keras = np.array(y)
     y_keras = y_keras.reshape(y_keras.shape[0], 1)
     return x_keras, y_keras
 
 def build_model(activation):
-    """Build the neural network"""
+    """Build the neural network. 
+    - Input size: 19 neurons
+    - 1 layer of 10 neurons and activation function 
+    - Output: 1 neuron with sigmoid activation function """
     model = Sequential()
     model.add(Dense(10, input_dim=19, activation=activation))
     model.add(Dense(1, activation='sigmoid'))
     return model
 
 def recall_m(y_true, y_pred):
-    """Compute the recall with the true value"""
+    """Compute the recall metric with the true value and the prediction.
+    Input: - y_true: true result from the test set. The value is 0 or 1.
+           - y_pred: result of the neural network. The value is 0 or 1.
+    Output: Recall of the results, which is true positive on possible positive."""
     true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
     possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
     recall = true_positives / (possible_positives + K.epsilon())
     return recall
 
 def precision_m(y_true, y_pred):
+    """Compute the precision metric with the true value and the prediction.
+    Input: - y_true: true result from the test set. The value is 0 or 1.
+           - y_pred: result of the neural network. The value is 0 or 1.
+    Output: Precision of the results, which is true positive on predicted positive."""
     true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
     predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
     precision = true_positives / (predicted_positives + K.epsilon())
     return precision
 
 def f1_m(y_true, y_pred):
+    """Compute the F1-score metric with the true value and the prediction. 
+    It uses the functions precision_m and recall_m.
+    Input: - y_true: true result from the test set. The value is 0 or 1.
+           - y_pred: result of the neural network. The value is 0 or 1.
+    Output: F1-score of the results, which is the recall multiplied by the precision divided by the sum of recall and precision."""
     precision = precision_m(y_true, y_pred)
     recall = recall_m(y_true, y_pred)
     return 2*((precision*recall)/(precision+recall+K.epsilon()))
