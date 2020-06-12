@@ -37,7 +37,10 @@ The folder `litterature` contains scientific papers that inspired our project. T
 
 ### Documentation
 * [Class Project](https://github.com/epfml/OptML_course/blob/master/labs/mini-project/miniproject_description.pdf) : Description of the project.
-* [An overview of gradient descent optimization algorithms](https://arxiv.org/pdf/1609.04747.pdf) : Description of optimizers used in this project
+* [An overview of gradient descent optimization algorithms](https://arxiv.org/pdf/1609.04747.pdf) : Description of optimizers used in this project.
+* [Neural Networks for Machine Learning](https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf): RMSprop
+* [Adam: a method for stochastic optimization](https://arxiv.org/pdf/1412.6980.pdf): Adam
+* [Stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent): SGD
 * [Bank Marketing Data Set](https://archive.ics.uci.edu/ml/datasets/Bank+Marketing) : Dataset of the experiement with its features.
 
 ### Authors
